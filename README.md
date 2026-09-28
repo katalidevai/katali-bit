@@ -59,6 +59,31 @@ than the CPU/RAM path because of launch and transfer overhead. For maximum
 The full dense-GPU residency tier is also not recommended because its extra
 transfer overhead measured slower.
 
+## Local HTTP API
+
+Start the loopback-only API with the optimized runtime:
+
+```powershell
+.\katali.exe api --port 8080
+```
+
+It provides `GET /health`, `POST /generate`, and the OpenAI-compatible
+`POST /v1/chat/completions`. Include the model path in each generation request:
+
+```powershell
+$body = @{
+  model = 'C:\models\Bonsai-1.7B-Q1_0.gguf'
+  messages = @(@{ role = 'user'; content = 'What is the capital of France?' })
+  max_tokens = 32
+} | ConvertTo-Json -Depth 4
+
+Invoke-RestMethod http://127.0.0.1:8080/v1/chat/completions `
+  -Method Post -ContentType 'application/json' -Body $body
+```
+
+For incremental output, add `stream = $true` to the request. The server binds
+to `127.0.0.1` only and processes requests sequentially.
+
 ## Larger Bonsai models
 
 The larger checkpoints are also available for testing. Download their Q1_0
