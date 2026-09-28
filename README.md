@@ -1,8 +1,19 @@
-# Katali BitNet
+# Katali BitNet — Fast Local AI for Laptops
 
-Katali BitNet is a lightweight Windows chat application and local HTTP API for running 1.58-bit language models on the CPU.
+Katali BitNet is a laptop-first Windows chat application and local HTTP API for running 1.58-bit language models locally on the CPU. It is designed for useful answers without requiring a discrete GPU, cloud account, or internet connection after the model is downloaded.
 
-The current default is Falcon3 10B Instruct 1.58-bit. On the development PC it answers factual prompts at roughly **6.9 tokens/sec** using 8 CPU threads.
+The current default is Falcon3 10B Instruct 1.58-bit. On the development laptop it answers factual prompts at roughly **6.9 tokens/sec** using 8 CPU threads—a strong quality/speed balance for everyday local AI.
+
+## Why it works well on a laptop
+
+- CPU-only: no NVIDIA GPU or cloud service required
+- Small 1.58-bit model files compared with full-precision models
+- Fast enough for interactive chat on a modern laptop CPU
+- Local and private: prompts stay on the machine
+- Native Windows executable with no browser or Node.js dependency
+- Model stays loaded between questions to reduce repeat startup delays
+
+For the best experience, use a laptop with at least 16 GB RAM for the 10B model. The 8B model is a good choice for systems with less memory, while 3B is the fastest option.
 
 ## Quick start
 
