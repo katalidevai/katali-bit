@@ -67,8 +67,9 @@ Start the loopback-only API with the optimized runtime:
 .\katali.exe api --port 8080
 ```
 
-It provides `GET /health`, `POST /generate`, and the OpenAI-compatible
-`POST /v1/chat/completions`. Include the model path in each generation request:
+It provides `GET /health`, `POST /generate`, the short `POST /v1/chat` route,
+and the OpenAI-compatible `POST /v1/chat/completions`. Include the model path
+in each generation request:
 
 ```powershell
 $body = @{
