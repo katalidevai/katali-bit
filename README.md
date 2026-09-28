@@ -42,6 +42,20 @@ For the larger 27B model, use:
 The 27B model runs in CPU/system-RAM mode and is substantially slower than the
 1.7B build on ordinary desktop CPUs.
 
+For maximum throughput on an NVIDIA GPU, enable Katali's fused CUDA DeltaNet
+path while keeping the large FFN weights in system RAM:
+
+```powershell
+$env:KATALI_CUDA_MOE = "1"
+$env:KATALI_CUDA_GDN = "1"
+$env:KATALI_CUDA_DP4A = "1"
+.\katali.exe generate Bonsai-27B-Q1_0.gguf "Hello" --max 32 --threads 12
+```
+
+On the development RTX 4060/i5-10400 system this measured about 2.2 tok/s.
+The full dense-GPU residency tier is intentionally not recommended because
+its extra transfer overhead measured slower.
+
 ## Larger Bonsai models
 
 The larger checkpoints are also available for testing. Download their Q1_0
