@@ -1,6 +1,7 @@
-build/
-.vs/
-*.user
-*.suo
+*.gguf
+*.kcache
 models/
-vendor/BitNet/.venv/
+logs/
+build*/
+tmp*/
+__pycache__/
