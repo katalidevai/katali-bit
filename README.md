@@ -18,6 +18,21 @@ $env:KATALI_BONSAI_Q8 = "1"
 The model file is intentionally not included. Download or provide the Bonsai
 Q1_0 GGUF separately.
 
+## Download the model
+
+Download `Bonsai-1.7B-Q1_0.gguf` from the official PrismML Hugging Face
+repository:
+
+<https://huggingface.co/prism-ml/Bonsai-1.7B-gguf>
+
+With the Hugging Face CLI:
+
+```powershell
+hf download prism-ml/Bonsai-1.7B-gguf Bonsai-1.7B-Q1_0.gguf --local-dir .
+```
+
+Place the downloaded file beside `katali.exe`, then run the command above.
+
 Recommended files:
 
 - `katali.exe` — CPU runtime
