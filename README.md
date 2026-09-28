@@ -23,7 +23,7 @@ Q1_0 GGUF separately.
 Download `Bonsai-1.7B-Q1_0.gguf` from the official PrismML Hugging Face
 repository:
 
-<https://huggingface.co/prism-ml/Bonsai-1.7B-gguf>
+[Direct download: Bonsai-1.7B-Q1_0.gguf](https://huggingface.co/prism-ml/Bonsai-1.7B-gguf/resolve/main/Bonsai-1.7B-Q1_0.gguf?download=true)
 
 With the Hugging Face CLI:
 
