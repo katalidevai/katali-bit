@@ -36,6 +36,8 @@ Place the downloaded file beside `katali.exe`, then run the command above.
 
 For the larger 27B model, use:
 
+Direct download: <https://huggingface.co/prism-ml/Bonsai-27B-gguf/resolve/main/Bonsai-27B-Q1_0.gguf?download=true>
+
 ```powershell
 .\katali.exe generate Bonsai-27B-Q1_0.gguf "What is the capital of France?" --max 32 --threads 12
 ```
@@ -81,6 +83,33 @@ $body = @{
 Invoke-RestMethod http://127.0.0.1:8080/v1/chat/completions `
   -Method Post -ContentType 'application/json' -Body $body
 ```
+
+### API-key tutorial
+
+This local server does not require or validate an API key. It listens only on
+`127.0.0.1`, so a key is unnecessary for local use. OpenAI-compatible clients
+that require a non-empty key can use any placeholder value; it is not checked
+by Katali:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://127.0.0.1:8080/v1",
+    api_key="local-not-used",
+)
+
+reply = client.chat.completions.create(
+    model=r"C:\models\Bonsai-1.7B-Q1_0.gguf",
+    messages=[{"role": "user", "content": "Say hello"}],
+    max_tokens=32,
+)
+print(reply.choices[0].message.content)
+```
+
+Do not expose this server to a network interface: it has no authentication
+layer. Keep it bound to loopback or place an authenticated reverse proxy in
+front of it.
 
 For incremental output, add `stream = $true` to the request. The server binds
 to `127.0.0.1` only and processes requests sequentially.
