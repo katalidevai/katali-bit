@@ -33,6 +33,17 @@ hf download prism-ml/Bonsai-1.7B-gguf Bonsai-1.7B-Q1_0.gguf --local-dir .
 
 Place the downloaded file beside `katali.exe`, then run the command above.
 
+## Larger Bonsai models
+
+The larger checkpoints are also available for testing. Download their Q1_0
+files from the corresponding official repositories:
+
+- [Bonsai 4B](https://huggingface.co/prism-ml/Bonsai-4B-gguf)
+- [Bonsai 8B — direct Q1_0 download](https://huggingface.co/prism-ml/Bonsai-8B-gguf/resolve/main/Bonsai-8B-Q1_0.gguf?download=true)
+- [Bonsai 27B](https://huggingface.co/prism-ml/Bonsai-27B-gguf)
+
+These larger model files are not stored in this GitHub repository.
+
 Recommended files:
 
 - `katali.exe` — CPU runtime
