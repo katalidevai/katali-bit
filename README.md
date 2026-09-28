@@ -4,9 +4,10 @@ Binary-only release of the Katali CPU runtime for Bonsai Q1_0 GGUF
 checkpoints, including Bonsai 1.7B and the experimental 27B path.
 
 The optimized Windows AVX2 path uses Q8 activation quantization, a four-row
-Q1×Q8 kernel, fused Q/K/V projections, and fused FFN gate/up projections.
-On the development i5-10400 system it reached 25+ tok/s with 12 threads while
-preserving coherent output on the fixed smoke prompts.
+Q1×Q8 kernel, fused DeltaNet projections, fused FFN gate/up projections, and
+inline scheduling for tiny projections. On the development i5-10400 system
+the Bonsai 27B path measured about 1.6 tok/s with 12 threads while preserving
+coherent output on the fixed smoke prompts.
 
 ## Run
 
@@ -52,9 +53,11 @@ $env:KATALI_CUDA_DP4A = "1"
 .\katali.exe generate Bonsai-27B-Q1_0.gguf "Hello" --max 32 --threads 12
 ```
 
-On the development RTX 4060/i5-10400 system this measured about 2.2 tok/s.
-The full dense-GPU residency tier is intentionally not recommended because
-its extra transfer overhead measured slower.
+On the development RTX 4060/i5-10400 system this CUDA path measured slower
+than the CPU/RAM path because of launch and transfer overhead. For maximum
+27B throughput, leave these CUDA variables unset and use `--threads 12`.
+The full dense-GPU residency tier is also not recommended because its extra
+transfer overhead measured slower.
 
 ## Larger Bonsai models
 
